@@ -1,26 +1,23 @@
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
+import pages.LoginPage;
+import utilities.PropertiesManager;
 
-public class LoginTest {
-    public WebDriver driver;
+public class LoginTest extends BaseTest {
 
-    @BeforeSuite
-    public void beforeSuite() {
-        driver = WebDriverSingleton.getWebDriverInstance();
-    }
+    PropertiesManager propertiesManager = new PropertiesManager();
 
-    @AfterSuite
-    public void afterSuite() {
-        driver.quit();
-    }
-
-    @Test
+    @Test (priority = 0)
     public void TestLoadPage() {
 
-        driver.get("https://www.gmail.com");
+        String email = propertiesManager.getProperty("user_email");
+        String password = propertiesManager.getProperty("user_password");
+
+        LoginPage loginPage = new LoginPage(driver, wait);
+
+        loginPage.goGmail();
+        loginPage.login(email, password);
+
         Assert.assertTrue(driver.getTitle().contains("Gmail"));
 
     }

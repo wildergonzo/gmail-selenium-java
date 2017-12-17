@@ -1,3 +1,5 @@
+package utilities;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -6,9 +8,9 @@ public class WebDriverSingleton {
     private WebDriverSingleton () {}
 
     public static WebDriver getWebDriverInstance() {
-        Utils utils = new Utils();
+        PropertiesManager propertiesManager = new PropertiesManager();
         if (null == driver) {
-            System.setProperty("webdriver.gecko.driver", utils.getGeckoDriverPath());
+            System.setProperty("webdriver.gecko.driver", propertiesManager.getProperty("gecko_path"));
             driver = new FirefoxDriver();
         }
         return driver;

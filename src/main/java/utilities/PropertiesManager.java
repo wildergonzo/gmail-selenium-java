@@ -1,3 +1,5 @@
+package utilities;
+
 import java.util.Properties;
 import java.io.File;
 import java.io.FileInputStream;
@@ -5,16 +7,18 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class Utils {
-    public String getGeckoDriverPath() {
+public class PropertiesManager {
+
+    public String getProperty(String propertyName) {
+
         try {
             File file = new File("config.properties");
             FileInputStream fileInput = new FileInputStream(file);
             Properties properties = new Properties();
-            properties.load(fileInput);
-            fileInput.close();
 
-            return properties.getProperty("gecko_path");
+            properties.load(fileInput);
+
+            return properties.getProperty(propertyName);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
