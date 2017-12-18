@@ -8,7 +8,7 @@ public class LoginTest extends BaseTest {
     PropertiesManager propertiesManager = new PropertiesManager();
 
     @Test (priority = 0)
-    public void TestLoadPage() {
+    public void TestLoadPage() throws InterruptedException {
 
         String email = propertiesManager.getProperty("user_email");
         String password = propertiesManager.getProperty("user_password");

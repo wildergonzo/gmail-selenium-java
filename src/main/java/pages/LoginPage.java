@@ -12,21 +12,24 @@ public class LoginPage extends BasePage {
     }
 
     // login_url
-    String gmailUrl = "https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&service=mail&sacu=1&rip=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin";
+    String gmailUrl = "https://gmail.com";
 
     // web elements
     String txtEmail = "identifierId";
     String txtPassword = "input.whsOnd.zHQkBf";
     String btnNext = "span.RveJvd.snByac";
 
+
     // page methods
-    public void login (String email, String password) {
+    public void login (String email, String password) throws InterruptedException {
         writeText(By.id(txtEmail), email);
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(btnNext)));
         click(By.cssSelector(btnNext));
-        /*wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(txtPassword)));
+        Thread.sleep(2000); // need to improve this
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(txtPassword)));
         writeText(By.cssSelector(txtPassword), password);
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(btnNext)));
-        click(By.cssSelector(btnNext));*/ //in progress
+        click(By.cssSelector(btnNext));
     }
 
     public void goGmail () {

@@ -11,7 +11,7 @@ public class BaseTest {
     @BeforeSuite
     public void beforeSuite() {
         driver = WebDriverSingleton.getWebDriverInstance();
-        wait = new WebDriverWait(driver,15);
+        wait = new WebDriverWait(driver,30);
         driver.manage().window().maximize();
     }
 
