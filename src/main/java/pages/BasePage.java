@@ -15,15 +15,15 @@ public class BasePage {
     }
 
     // methods
-    public void click (By element) {
+    public void clickElement (By element) {
         driver.findElement(element).click();
     }
 
-    public void writeText (By element, String text) {
+    public void sendText (By element, String text) {
         driver.findElement(element).sendKeys(text);
     }
 
-    public void goUrl (String url) {
+    public void openUrl (String url) {
         driver.get(url);
     }
 }

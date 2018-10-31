@@ -12,27 +12,28 @@ public class LoginPage extends BasePage {
     }
 
     // login_url
-    String gmailUrl = "https://gmail.com";
+    String signInUrl = "https://gmail.com";
 
     // web elements
-    String txtEmail = "identifierId";
-    String txtPassword = "input.whsOnd.zHQkBf";
-    String btnNext = "span.RveJvd.snByac";
+    By txtEmail = By.id("identifierId");
+    By btnNext = By.cssSelector("span.RveJvd.snByac");
+    By txtPassword = By.cssSelector("input.whsOnd.zHQkBf");
 
+    // open gmail login page
+    public void openGmailSignInPage () {
+        openUrl(signInUrl);
+    }
 
     // page methods
-    public void login (String email, String password) throws InterruptedException {
-        writeText(By.id(txtEmail), email);
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(btnNext)));
-        click(By.cssSelector(btnNext));
+    public void loginAs (String email, String password) throws InterruptedException {
+        sendText(txtEmail, email);
+        wait.until(ExpectedConditions.elementToBeClickable(btnNext));
+        clickElement(btnNext);
         Thread.sleep(2000); // need to improve this
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(txtPassword)));
-        writeText(By.cssSelector(txtPassword), password);
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(btnNext)));
-        click(By.cssSelector(btnNext));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(txtPassword));
+        sendText(txtPassword, password);
+        wait.until(ExpectedConditions.elementToBeClickable(btnNext));
+        clickElement(btnNext);
     }
 
-    public void goGmail () {
-        goUrl(gmailUrl);
-    }
 }
